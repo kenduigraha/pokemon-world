@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> should render and match the snapshot 1`] = `
+<ForwardRef>
+  <HelmetWrapper
+    defaultTitle="Pokemon's World"
+    defer={true}
+    encodeSpecialCharacters={true}
+    titleTemplate="Pokemon's World"
+  >
+    <meta
+      content="A Pokemon's World application"
+      name="description"
+    />
+  </HelmetWrapper>
+  <Switch>
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/"
+    />
+    <Route
+      component={[Function]}
+      path="/features"
+    />
+    <Route
+      component={[Function]}
+      path="/pokemon/:pokemonName"
+    />
+    <Route
+      component={[Function]}
+      path=""
+    />
+  </Switch>
+  <GlobalStyleComponent />
+</ForwardRef>
+`;

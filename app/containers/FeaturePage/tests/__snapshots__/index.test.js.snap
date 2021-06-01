@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FeaturePage /> should render its heading 1`] = `
+<div>
+  <h1
+    class="H1-tncdg6-0 hpAKSC"
+  >
+    <span>
+      Features
+    </span>
+  </h1>
+  <ul
+    class="List-sc-1aai6b-0 gbaodI"
+  >
+    <li
+      class="ListItem-sc-27v6xc-0 fixMwZ"
+    >
+      <p
+        class="ListItemTitle-sc-1t4skn3-0 fWjsMZ"
+      >
+        <span>
+          Pokemon's Home Menu Feature
+        </span>
+      </p>
+      <p>
+        <span>
+          List of all Pokemon's data in Pokemon's World
+        </span>
+      </p>
+    </li>
+    <li
+      class="ListItem-sc-27v6xc-0 fixMwZ"
+    >
+      <p
+        class="ListItemTitle-sc-1t4skn3-0 fWjsMZ"
+      >
+        <span>
+          Pokemon's Web Features
+        </span>
+      </p>
+      <p>
+        <span>
+          
+      Enjoy the Pokemon's Word website catalog and see your favourite's Pokemon in this site.
+    
+        </span>
+      </p>
+    </li>
+    <li
+      class="ListItem-sc-27v6xc-0 fixMwZ"
+    >
+      <p
+        class="ListItemTitle-sc-1t4skn3-0 fWjsMZ"
+      >
+        <span>
+          Pokemon's Detail Page
+        </span>
+      </p>
+      <p>
+        <span>
+          
+      This page is for your detail Pokemon's information
+    
+        </span>
+      </p>
+    </li>
+    <li
+      class="ListItem-sc-27v6xc-0 fixMwZ"
+    >
+      <p
+        class="ListItemTitle-sc-1t4skn3-0 fWjsMZ"
+      >
+        <span>
+          My Pokemon Favourite List
+        </span>
+      </p>
+      <p>
+        <span>
+          
+      This page is belong to your favourite Pokemon List
+    
+        </span>
+      </p>
+    </li>
+  </ul>
+</div>
+`;
