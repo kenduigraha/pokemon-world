@@ -28,3 +28,17 @@ $ yarn test
 4. Page Detail Pokemon Information
 5. Page List of all features
 ```
+
+Screenshot:
+1. Home
+![home](https://github.com/kenduigraha/pokemon-world/blob/master/app/images/pokemon-home.PNG?raw=true)
+2. Modal Detail
+![modal detail](https://github.com/kenduigraha/pokemon-world/blob/master/app/images/modal-pokemon-detail.PNG?raw=true)
+3. Select Pokemon Type
+![select pokemon type](https://github.com/kenduigraha/pokemon-world/blob/master/app/images/pokemon-select-type.png?raw=true)
+4. Search Pokemon
+![search pokemon](https://github.com/kenduigraha/pokemon-world/blob/master/app/images/pokemon-search-result.PNG?raw=true)
+5. My Pokemon List
+![pokemon list](https://github.com/kenduigraha/pokemon-world/blob/master/app/images/my-pokemon-list.PNG?raw=true)
+6. Detail Pokemon Page
+![pokemon detail](https://github.com/kenduigraha/pokemon-world/blob/master/app/images/pokemon-detail-page.PNG?raw=true)
