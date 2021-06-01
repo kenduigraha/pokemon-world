@@ -14,7 +14,7 @@ export default defineMessages({
   },
   homeMenuHeader: {
     id: `${scope}.homeMenu.header`,
-    defaultMessage: 'Pokemon\'s Home Menu Feature',
+    defaultMessage: "Pokemon's Home Menu Feature",
   },
   homeMenuMessage: {
     id: `${scope}.homeMenu.message`,
@@ -22,7 +22,7 @@ export default defineMessages({
   },
   featuresHeader: {
     id: `${scope}.feature.header`,
-    defaultMessage: 'Pokemon\'s Web Features',
+    defaultMessage: "Pokemon's Web Features",
   },
   featuresMessage: {
     id: `${scope}.feature.message`,
@@ -32,7 +32,7 @@ export default defineMessages({
   },
   pokemonDetailPageHeader: {
     id: `${scope}.pokemonDetail.header`,
-    defaultMessage: 'Pokemon\'s Detail Page',
+    defaultMessage: "Pokemon's Detail Page",
   },
   pokemonDetailPageMessage: {
     id: `${scope}.pokemonDetail.message`,

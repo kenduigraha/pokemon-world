@@ -26,8 +26,8 @@ describe('<PokemonDetailDisplay />', () => {
           pokemonDetail={{}}
           doFavPokemon={() => {}}
           doUnFavPokemon={() => {}}
-        />     
-      </BrowserRouter>
+        />
+      </BrowserRouter>,
     );
     expect(spy).not.toHaveBeenCalled();
   });
@@ -40,15 +40,17 @@ describe('<PokemonDetailDisplay />', () => {
   it.skip('Should render and match the snapshot', () => {
     const {
       container: { firstChild },
-    } = render(<PokemonDetailDisplay
-      dataPokemonModal={{
-        name: '',
-        url: '',
-      }}
-      pokemonDetail={{}}
-      doFavPokemon={() => {}}
-      doUnFavPokemon={() => {}}
-    />);
+    } = render(
+      <PokemonDetailDisplay
+        dataPokemonModal={{
+          name: '',
+          url: '',
+        }}
+        pokemonDetail={{}}
+        doFavPokemon={() => {}}
+        doUnFavPokemon={() => {}}
+      />,
+    );
     expect(firstChild).toMatchSnapshot();
   });
 });

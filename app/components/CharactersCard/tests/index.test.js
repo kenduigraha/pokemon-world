@@ -24,7 +24,6 @@ describe('<CharactersCard />', () => {
           <CharactersCard
             data={{ name: '', url: '' }}
             loading={false}
-            showModal={jest.fn()}
             showModal={() => {}}
             doFavPokemon={() => {}}
             doUnFavPokemon={() => {}}

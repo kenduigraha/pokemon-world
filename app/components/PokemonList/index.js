@@ -115,7 +115,7 @@ class PokemonList extends PureComponent {
       <PokemonListDiv id="content">
         {pokemonDetail.data.length === 0 && 'Pokémon is Empty'}
         {Object.keys(pokemonList.error).length > 0 && 'Pokémon Not Found'}
-        
+
         {pokemonList.infinity === false && pokemonList.isLoading === true ? (
           <Skeleton active />
         ) : (
@@ -142,7 +142,9 @@ class PokemonList extends PureComponent {
           onCancel={this.handleOk}
           footer={[
             <LinkDetailPage
-              key={`link-${pokemonDetail.data.species.name}-${new Date().getTime()}`}
+              key={`link-${
+                pokemonDetail.data.species.name
+              }-${new Date().getTime()}`}
               to={`/pokemon/${pokemonDetail.data.species.name}`}
             >
               Go to {pokemonDetail.data.species.name} Detail Page

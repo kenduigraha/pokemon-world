@@ -103,4 +103,9 @@ const PokemonTypeButton = styled(Button)`
   }
 `;
 
-export { PokemonTypeCol, PokemonStatsCol, PokemonProfileRow, PokemonTypeButton };
+export {
+  PokemonTypeCol,
+  PokemonStatsCol,
+  PokemonProfileRow,
+  PokemonTypeButton,
+};

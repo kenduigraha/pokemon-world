@@ -30,10 +30,7 @@ const AppWrapper = styled.div`
 export default function App() {
   return (
     <AppWrapper>
-      <Helmet
-        titleTemplate="Pokemon's World"
-        defaultTitle="Pokemon's World"
-      >
+      <Helmet titleTemplate="Pokemon's World" defaultTitle="Pokemon's World">
         <meta name="description" content="A Pokemon's World application" />
       </Helmet>
       <Switch>

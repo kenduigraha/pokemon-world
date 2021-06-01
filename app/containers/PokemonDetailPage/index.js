@@ -13,11 +13,7 @@ import { Link } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import {
-  getPokemonDetailStart,
-  doFavPokemonStart,
-  doUnFavPokemonStart,
-} from '../PokemonHomePage/actions';
+import PokemonDetailDisplay from 'components/PokemonDetailDisplay';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -25,7 +21,11 @@ import makeSelectPokemonDetailPage from '../PokemonHomePage/selectors';
 import reducer from '../PokemonHomePage/reducer';
 import saga from '../PokemonHomePage/saga';
 
-import PokemonDetailDisplay from 'components/PokemonDetailDisplay';
+import {
+  getPokemonDetailStart,
+  doFavPokemonStart,
+  doUnFavPokemonStart,
+} from '../PokemonHomePage/actions';
 
 const { Title } = Typography;
 
@@ -37,7 +37,7 @@ const PokemonDetailMenu = styled(Row)`
 `;
 
 const IconBack = styled(Icon)`
-  font-size:26px;
+  font-size: 26px;
   color: #00d451 !important;
   cursor: pointer;
 `;
@@ -51,14 +51,18 @@ export function PokemonDetailPage({ dispatch, pokemonHomePage, ...props }) {
   useInjectSaga({ key: 'pokemonDetailPage', saga });
 
   const getPokemonDetail = data => dispatch(getPokemonDetailStart(data));
-  
+
   const favPokemon = data => dispatch(doFavPokemonStart(data));
   const unFavPokemon = data => dispatch(doUnFavPokemonStart(data));
-  
+
   const { pokemonDetail } = pokemonHomePage;
 
   useEffect(() => {
-    const { match: { params: { pokemonName } } } = props;
+    const {
+      match: {
+        params: { pokemonName },
+      },
+    } = props;
     getPokemonDetail(pokemonName);
   }, []);
 
@@ -70,11 +74,11 @@ export function PokemonDetailPage({ dispatch, pokemonHomePage, ...props }) {
     <div>
       <PokemonDetailMenu>
         <Col span={4}>
-          <Link to="/" >
+          <Link to="/">
             <IconBack type="left" />
           </Link>
         </Col>
-        
+
         <Col span={20}>
           {!pokemonDetail.isError && (
             <TitlePokemon>{pokemonDetail.data.species.name}</TitlePokemon>
@@ -82,25 +86,24 @@ export function PokemonDetailPage({ dispatch, pokemonHomePage, ...props }) {
         </Col>
       </PokemonDetailMenu>
 
-      {
-        pokemonDetail.isError ? (
-          'Pokémon Not Found'
-        ) : (
-          <Row>
-            <PokemonDetailDisplay
-              pokemonDetail={pokemonDetail}
-              doFavPokemon={favPokemon}
-              doUnFavPokemon={unFavPokemon}
-            />
-          </Row>
-        )
-      }
+      {pokemonDetail.isError ? (
+        'Pokémon Not Found'
+      ) : (
+        <Row>
+          <PokemonDetailDisplay
+            pokemonDetail={pokemonDetail}
+            doFavPokemon={favPokemon}
+            doUnFavPokemon={unFavPokemon}
+          />
+        </Row>
+      )}
     </div>
   );
 }
 
 PokemonDetailPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  pokemonHomePage: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

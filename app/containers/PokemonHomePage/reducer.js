@@ -74,17 +74,17 @@ const pokemonHomePageReducer = (state = initialState, action) =>
           const doCheckExistingData = () => {
             const existingData = state.pokemonList.data;
 
-            const filteredPokemonList = existingData.filter(
-              e => this.indexOf(e.name) < 0,
-              action.data.results.map(result => result.name),
-            );
-            console.log('filteredPokemonList')
-            console.log(filteredPokemonList)
-            return filteredPokemonList.length > 0 ? existingData.concat(action.data.results) : existingData;
-          }
+            const filteredPokemonList = existingData.filter(function(e) {
+              return this.indexOf(e.name) < 0;
+            }, action.data.results.map(result => result.name));
+
+            return filteredPokemonList.length > 0
+              ? existingData.concat(action.data.results)
+              : existingData;
+          };
 
           let results =
-            state.pokemonList.data.length === 0
+            state.pokemonList.data.length <= 1
               ? action.data.results
               : doCheckExistingData();
 
@@ -148,24 +148,25 @@ const pokemonHomePageReducer = (state = initialState, action) =>
         draft.pokemonDetail.isError = false;
         break;
 
-        // Fave or Unfav Pokemon
-        case FAVOURITE_POKEMON:
-          const newDataFav = state.pokemonList.data.map(pokemon => ({
-            ...pokemon,
-            like: pokemon.name === action.data ? true : false,
-          }));
+      // Fave or Unfav Pokemon
+      case FAVOURITE_POKEMON: {
+        const newDataFav = state.pokemonList.data.map(pokemon => ({
+          ...pokemon,
+          like: pokemon.name === action.data,
+        }));
 
-          draft.pokemonList.data = newDataFav;
-          break;
-        case UN_FAVOURITE_POKEMON:
-          const newDataUnFav = state.pokemonList.data.map(pokemon => ({
-            ...pokemon,
-            like: pokemon.name === action.data ? false : true,
-          }));
-
-          draft.pokemonList.data = newDataUnFav;
-          break;
+        draft.pokemonList.data = newDataFav;
         break;
+      }
+      case UN_FAVOURITE_POKEMON: {
+        const newDataUnFav = state.pokemonList.data.map(pokemon => ({
+          ...pokemon,
+          like: pokemon.name === action.data,
+        }));
+
+        draft.pokemonList.data = newDataUnFav;
+        break;
+      }
 
       // GET LIST POKEMON TYPES
       case GET_POKEMON_TYPES_START:

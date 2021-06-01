@@ -9,7 +9,5 @@
 // const generator = pokemonDetailPageSaga();
 
 describe('pokemonDetailPageSaga Saga', () => {
-  it('Expect to have unit tests specified', () => {
-    
-  });
+  it('Expect to have unit tests specified', () => {});
 });

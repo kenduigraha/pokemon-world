@@ -33,7 +33,6 @@ import makeSelectPokemonHomePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
-
 const MenuWrapper = styled(Menu)`
   & > .ant-menu-item-selected {
     color: #00d451 !important;
@@ -51,10 +50,10 @@ export function PokemonHomePage({ dispatch, pokemonHomePage }) {
   useInjectReducer({ key: 'pokemonHomePage', reducer });
   useInjectSaga({ key: 'pokemonHomePage', saga });
 
-  const [currentMenu, setCurrentMenu] = useState('home');  
+  const [currentMenu, setCurrentMenu] = useState('home');
   const { pokemonList, pokemonTypes, pokemonDetail } = pokemonHomePage;
   const [pokemonListFav, setPokemonListFave] = useState(pokemonList);
-  
+
   /**
    * dispatch actions
    */
@@ -65,33 +64,33 @@ export function PokemonHomePage({ dispatch, pokemonHomePage }) {
   const updateFlagInfinity = flag => dispatch(updateFlagInfinityStart(flag));
   const getPokemonDetail = data => dispatch(getPokemonDetailStart(data));
   const resetPokemonDetail = () => dispatch(resetPokemonDetailStart());
-  
+
   const favPokemon = data => dispatch(doFavPokemonStart(data));
   const unFavPokemon = data => dispatch(doUnFavPokemonStart(data));
 
   const handleClickMenu = e => {
     setCurrentMenu(e.key);
 
+    getPokemonList({ offset: 0, limit: 20, name: '' });
+
     const { data } = pokemonList;
 
-    const getDataLocalStorage = localStorage.getItem(LIST_FAV_POKEMON) ? JSON.parse(localStorage.getItem(LIST_FAV_POKEMON)) : [];
+    const getDataLocalStorage = localStorage.getItem(LIST_FAV_POKEMON)
+      ? JSON.parse(localStorage.getItem(LIST_FAV_POKEMON))
+      : [];
 
-    const filteredPokemonList = data.filter(
-      function(e) {
-        return this.indexOf(e.name) >= 0;
-      },
-      getDataLocalStorage,
-    );
+    const filteredPokemonList = data.filter(function(event) {
+      return this.indexOf(event.name) >= 0;
+    }, getDataLocalStorage);
 
     if (e.key === 'home') {
       getPokemonList({ offset: 0, limit: 20, name: '' });
     } else {
       setPokemonListFave({
         ...pokemonList,
-        data: filteredPokemonList
+        data: filteredPokemonList,
       });
     }
-    
   };
 
   useEffect(() => {
@@ -122,52 +121,48 @@ export function PokemonHomePage({ dispatch, pokemonHomePage }) {
         <meta name="description" content="Description of PokemonHomePage" />
       </Helmet>
 
-      <MenuWrapper onClick={handleClickMenu} selectedKeys={[currentMenu]} mode="horizontal">
-        <MenuItem key="home">
-          Home
-        </MenuItem>
-        <MenuItem key="my-pokemon-list">
-          My Pokemon List
-        </MenuItem>
+      <MenuWrapper
+        onClick={handleClickMenu}
+        selectedKeys={[currentMenu]}
+        mode="horizontal"
+      >
+        <MenuItem key="home">Home</MenuItem>
+        <MenuItem key="my-pokemon-list">My Pokemon List</MenuItem>
       </MenuWrapper>
-      {
-        currentMenu === 'home' && (
-          <>
-            <PokemonFilter
-              getPokemonList={getPokemonList}
-              getPokemonListByType={getPokemonListByType}
-              pokemonTypes={pokemonTypes.data}
-            />
-            <PokemonList
-              pokemonList={pokemonList}
-              getPokemonList={getPokemonList}
-              updateFlagInfinity={updateFlagInfinity}
-              getPokemonDetail={getPokemonDetail}
-              pokemonDetail={pokemonDetail}
-              resetPokemonDetail={resetPokemonDetail}
-              doFavPokemon={favPokemon}
-              doUnFavPokemon={unFavPokemon}
-            />
-          </>
-        )
-      }
+      {currentMenu === 'home' && (
+        <>
+          <PokemonFilter
+            getPokemonList={getPokemonList}
+            getPokemonListByType={getPokemonListByType}
+            pokemonTypes={pokemonTypes.data}
+          />
+          <PokemonList
+            pokemonList={pokemonList}
+            getPokemonList={getPokemonList}
+            updateFlagInfinity={updateFlagInfinity}
+            getPokemonDetail={getPokemonDetail}
+            pokemonDetail={pokemonDetail}
+            resetPokemonDetail={resetPokemonDetail}
+            doFavPokemon={favPokemon}
+            doUnFavPokemon={unFavPokemon}
+          />
+        </>
+      )}
 
-      {
-        currentMenu === 'my-pokemon-list' && (
-          <div>
-            <PokemonList
-              pokemonList={pokemonListFav}
-              getPokemonList={getPokemonList}
-              updateFlagInfinity={updateFlagInfinity}
-              getPokemonDetail={getPokemonDetail}
-              pokemonDetail={pokemonDetail}
-              resetPokemonDetail={resetPokemonDetail}
-              doFavPokemon={favPokemon}
-              doUnFavPokemon={unFavPokemon}
-            />
-          </div>
-        )
-      }
+      {currentMenu === 'my-pokemon-list' && (
+        <div>
+          <PokemonList
+            pokemonList={pokemonListFav}
+            getPokemonList={getPokemonList}
+            updateFlagInfinity={updateFlagInfinity}
+            getPokemonDetail={getPokemonDetail}
+            pokemonDetail={pokemonDetail}
+            resetPokemonDetail={resetPokemonDetail}
+            doFavPokemon={favPokemon}
+            doUnFavPokemon={unFavPokemon}
+          />
+        </div>
+      )}
     </div>
   );
 }

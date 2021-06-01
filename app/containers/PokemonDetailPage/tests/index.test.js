@@ -37,13 +37,11 @@ describe('<PokemonDetailPage />', () => {
                 pokemonTypes: { ...initialState.pokemonTypes },
                 pokemonDetail: { ...initialState.pokemonDetail },
               }}
-              match={
-                {
-                  params: {
-                    pokemonName: ''
-                  }
-                }
-              }
+              match={{
+                params: {
+                  pokemonName: '',
+                },
+              }}
             />
           </BrowserRouter>
         </IntlProvider>
@@ -58,6 +56,7 @@ describe('<PokemonDetailPage />', () => {
    * @see {@link https://jestjs.io/docs/en/api#testskipname-fn}
    */
   it.skip('Should render and match the snapshot', () => {
+    const dispatch = jest.fn();
     const {
       container: { firstChild },
     } = render(
@@ -70,13 +69,11 @@ describe('<PokemonDetailPage />', () => {
               pokemonTypes: { ...initialState.pokemonTypes },
               pokemonDetail: { ...initialState.pokemonDetail },
             }}
-            match={
-              {
-                params: {
-                  pokemonName: ''
-                }
-              }
-            }
+            match={{
+              params: {
+                pokemonName: '',
+              },
+            }}
           />
         </BrowserRouter>
       </IntlProvider>,

@@ -20,20 +20,22 @@ const CharactersCard = ({
   doUnFavPokemon,
   ...props
 }) => {
-  const [dataCharacter, setDataCharacter] = useState({ ...data, like: false, });
+  const [dataCharacter, setDataCharacter] = useState({ ...data, like: false });
 
   useEffect(() => {
-    const getDataLocalStorage = localStorage.getItem(LIST_FAV_POKEMON) ? JSON.parse(localStorage.getItem(LIST_FAV_POKEMON)) : [];
+    const getDataLocalStorage = localStorage.getItem(LIST_FAV_POKEMON)
+      ? JSON.parse(localStorage.getItem(LIST_FAV_POKEMON))
+      : [];
 
     if (getDataLocalStorage.indexOf(dataCharacter.name) >= 0) {
       setDataCharacter({
         ...dataCharacter,
         like: true,
-      })
+      });
     }
   }, []);
 
-  const handleOnClickName = (e) => {
+  const handleOnClickName = e => {
     e.stopPropagation();
 
     props.history.push(`pokemon/${dataCharacter.name}`);
@@ -41,20 +43,24 @@ const CharactersCard = ({
 
   const handleOnClickLike = (e, { name: pokemonName, like }) => {
     e.stopPropagation();
-    
-    let getDataLocalStorage = localStorage.getItem(LIST_FAV_POKEMON) ? JSON.parse(localStorage.getItem(LIST_FAV_POKEMON)) : [pokemonName];
 
+    const getDataLocalStorage = localStorage.getItem(LIST_FAV_POKEMON)
+      ? JSON.parse(localStorage.getItem(LIST_FAV_POKEMON))
+      : [pokemonName];
 
     if (!like) {
-      if (getDataLocalStorage.length >= 0 && getDataLocalStorage.indexOf(pokemonName) < 0) {
+      if (
+        getDataLocalStorage.length >= 0 &&
+        getDataLocalStorage.indexOf(pokemonName) < 0
+      ) {
         getDataLocalStorage.push(pokemonName);
       }
-      
+
       if (getDataLocalStorage.indexOf(dataCharacter.name) >= 0) {
         setDataCharacter({
           ...dataCharacter,
           like: true,
-        })
+        });
       }
       doFavPokemon(dataCharacter.name);
     } else {
@@ -64,7 +70,7 @@ const CharactersCard = ({
         setDataCharacter({
           ...dataCharacter,
           like: false,
-        })
+        });
       }
 
       if (indexRemove > -1) {
@@ -74,7 +80,7 @@ const CharactersCard = ({
     }
 
     localStorage.setItem(LIST_FAV_POKEMON, JSON.stringify(getDataLocalStorage));
-  }
+  };
 
   return (
     <CharactersCardCol
@@ -86,7 +92,7 @@ const CharactersCard = ({
       md={24}
       sm={24}
       xs={24}
-      onClick={(e) => showModal(e, dataCharacter)}
+      onClick={e => showModal(e, dataCharacter)}
     >
       <IconHeart
         type="heart"
@@ -105,12 +111,13 @@ const CharactersCard = ({
           />
         }
       >
-        <Meta title={(
-           <TextLinkDetailPage>{dataCharacter.name}</TextLinkDetailPage>
-        )} onClick={handleOnClickName} />
+        <Meta
+          title={<TextLinkDetailPage>{dataCharacter.name}</TextLinkDetailPage>}
+          onClick={handleOnClickName}
+        />
       </Card>
     </CharactersCardCol>
-  )
+  );
 };
 
 CharactersCard.defaultProps = {
@@ -124,6 +131,7 @@ CharactersCard.propTypes = {
   span: PropTypes.number,
   doFavPokemon: PropTypes.func.isRequired,
   doUnFavPokemon: PropTypes.func.isRequired,
+  history: PropTypes.any,
 };
 
 export default memo(withRouter(CharactersCard));
