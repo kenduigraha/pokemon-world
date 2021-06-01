@@ -72,25 +72,6 @@ export function PokemonHomePage({ dispatch, pokemonHomePage }) {
     setCurrentMenu(e.key);
 
     getPokemonList({ offset: 0, limit: 20, name: '' });
-
-    const { data } = pokemonList;
-
-    const getDataLocalStorage = localStorage.getItem(LIST_FAV_POKEMON)
-      ? JSON.parse(localStorage.getItem(LIST_FAV_POKEMON))
-      : [];
-
-    const filteredPokemonList = data.filter(function(event) {
-      return this.indexOf(event.name) >= 0;
-    }, getDataLocalStorage);
-
-    if (e.key === 'home') {
-      getPokemonList({ offset: 0, limit: 20, name: '' });
-    } else {
-      setPokemonListFave({
-        ...pokemonList,
-        data: filteredPokemonList,
-      });
-    }
   };
 
   useEffect(() => {
@@ -101,7 +82,7 @@ export function PokemonHomePage({ dispatch, pokemonHomePage }) {
   }, []);
 
   useEffect(() => {
-    const { error } = pokemonList;
+    const { data, error } = pokemonList;
 
     // check object error is not empty
     if (Object.keys(error).length > 0) {
@@ -111,6 +92,19 @@ export function PokemonHomePage({ dispatch, pokemonHomePage }) {
           message: 'Pokémon Not Found',
         });
       }
+    } else {
+      const getDataLocalStorage = localStorage.getItem(LIST_FAV_POKEMON)
+        ? JSON.parse(localStorage.getItem(LIST_FAV_POKEMON))
+        : [];
+
+      const filteredPokemonList = data.filter(function(event) {
+        return this.indexOf(event.name) >= 0;
+      }, getDataLocalStorage);
+
+      setPokemonListFave({
+        ...pokemonList,
+        data: filteredPokemonList,
+      });
     }
   }, [pokemonList.data]);
 
