@@ -4,6 +4,10 @@ import { Button, Row, Col } from 'antd';
 const PokemonTypeCol = styled(Col)`
   display: flex !important;
   justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
 `;
 
 const PokemonStatsCol = styled(Col)`
